@@ -45,7 +45,7 @@
                         <label for="date">Enter a Date</label>
                         
                         <!-- ADDED onkeyup="myFunction()" TO THE LINE BELOW -->
-                        <input class="form-control" id="myInput" type="text" onkeyup="myFunction()" placeholder="2/1/2010">
+                        <input class="form-control" id="dateInput" type="text" onkeyup="dateFilter()" placeholder="2/1/2010">
                         <!--
                           <input class="form-control" id="datetime" type="text" onkeyup="myFunction()" placeholder="2/1/2010">
                         -->
@@ -54,6 +54,37 @@
                     </ul>
                   </div>
                   <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+                    <ul class="list-group" id="filters">
+                      <li class="filter list-group-item">
+
+                        
+                        <form action="/action_page.php">
+
+                          <label for="date_x">Date</label>
+                          <input class="form-control" type="text" id="dateInput2" name="date" onkeyup="dateFilter()" placeholder="ex. 1/1/2010">
+                      
+                          <label for="city_x">City</label>
+                          <input class="form-control" type="text" id="cityInput" name="city" onkeyup="dateFilter()" placeholder="ex. chicago">
+                      
+                          <label for="state_x">State</label>
+                          <input class="form-control" type="text" id="stateInput" name="state" onkeyup="dateFilter()" placeholder="ex. il">
+                          
+                          <label for="country_x">Country</label>
+                          <input class="form-control" type="text" id="countryInput" name="country" onkeyup="dateFilter()" placeholder="ex. us">
+
+                          <label for="shape_x">Shape</label>
+                          <input class="form-control" type="text" id="shapeInput" name="shape" onkeyup="dateFilter()" placeholder="ex. triangle">
+
+                          <label for="duration_x">Duration</label>
+                          <input class="form-control" type="text" id="durationInput" name="duration" onkeyup="dateFilter()" placeholder="ex. 5 mins.">
+
+                          <label for="comment_x">Comment</label>
+                          <input class="form-control" type="text" id="commentInput" name="duration" onkeyup="dateFilter()" placeholder="ex. red lights">
+                        
+                          <input type="submit" value="Submit">
+                        </form>
+                        
+
                 </form>
               </div>
             </div>
@@ -77,24 +108,35 @@
             </table>
 
             <script>
-              function myFunction() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
+              function dateFilter() {
+                var dateInput1_x, cityInput_x, dateFilter1, cityFilter, table, tr, td, i, txtValue;
+                dateInput1_x = document.getElementById("dateInput");
+                cityInput_x = document.getElementById("cityInput");
+                dateFilter1 = dateInput1_x.value.toUpperCase();
+                cityFilter = cityInput_x.value.toUpperCase();
                 table = document.getElementById("ufo-table");
                 tr = table.getElementsByTagName("tr");
                 for (i = 0; i < tr.length; i++) {
-                  td = tr[i].getElementsByTagName("td")[0];
-                  if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  td_date = tr[i].getElementsByTagName("td")[0];
+                  if (td_date) {
+                    txtValue = td_date.textContent || td_date.innerText;
+                    if (txtValue.toUpperCase().indexOf(dateFilter1) > -1) &&
+                    (txtValue.toUpperCase().indexOf(cityFilter) > -1) {
                       tr[i].style.display = "";
                     } else {
                       tr[i].style.display = "none";
-                    }
+                    }                    
                   }       
                 }
+
+                d3.select('#ufo-table').node().classed('table table-striped', false);
+                //d3.select('#ufo-table').attr('class','table table-striped');
+                //document.getElementById("ufo-table").classed('table-dark');
               }
+
+              
+              
+
               </script>
 
 

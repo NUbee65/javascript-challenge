@@ -93,7 +93,12 @@ function search(dateKey){
     }
 };
 
-inputDate = "1/3/2010";
+
+// d3.select('button')
+
+var inputDate = d3.select('input');
+
+// inputDate = "1/3/2010";
 
 var resultObject = search(inputDate);
 console.log(resultObject);
@@ -115,29 +120,29 @@ console.log(aa.comments);
 
 
 
-/*
-for (var i = 0; i < incidents.length; i++) {
-     
-  incident = incidents[i];
-  
-  console.log(`Value of i is: ${i}`);
-  console.log(`Incident values: ${movieScore}`);
-  
-  if (incident['datetime'] == inputDate) {
-    console.log(`${movieScore} is greater than 7`);
-    goodMovieScores.push(movieScore);
+function dateFilter() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("dateInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("ufo-table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {      
+      txtValue = td.textContent || td.innerText;      
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }                    
+    }    
   }
-  else if (movieScore >= 5 && movieScore < 7){
-    console.log(`${movieScore} is between 5 and 7`);
-    okMovieScores.push(movieScore);
-  }
-  else {
-    console.log(`${movieScore} is less than 5`);
-    badMovieScores.push(movieScore);
-  }
-  console.log(`Good movies: ${goodMovieScores}`);
-  console.log(`OK movies: ${okMovieScores}`);
-  console.log(`Bad movies: ${badMovieScores}`);
-  console.log('---');
 }
-*/
+
+// var data = [{"id":1,"term_id":5,"type":"car"},{"id":2,"term_id":3,"type":"bike"},{"id":3,"term_id":6,"type":"car"}];
+
+var result = data.filter(function(e) {
+  return e.datetime == "1/1/2010" && e.city == 'el cajon'
+});
+
+console.log(result);

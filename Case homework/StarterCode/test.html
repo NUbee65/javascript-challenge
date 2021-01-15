@@ -1,0 +1,133 @@
+<link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet" />
+<h2 class="w3-center">Filter Table Test</h2>
+
+<p class="w3-center"><button id="buttonReset" onclick="performReset()" class="w3-button w3-grey w3-hover-light-grey">Reset</button></p>
+
+<table id="myTable" class="w3-table w3-striped w3-hoverable">
+  <!--Column Headings-->
+  <thead>
+    <tr>
+      <td><input id="inputName" class="w3-input" placeholder="Name..."></td>
+      <td><input id="inputCity" class="w3-input" placeholder="City..."></td>
+      <td><input id="inputCountry" class="w3-input" placeholder="Country..."></td>
+    </tr>
+  </thead>
+  <!--Row Data-->
+  <tbody>
+    <tr class="item">
+      <td>Alfreds Futterkiste</td>
+      <td>Berlin</td>
+      <td>Germany</td>
+    </tr>
+    <tr class="item">
+      <td>Berglunds snabbköp</td>
+      <td>Lule </td>
+      <td>Sweden</td>
+    </tr>
+    <tr class="item">
+      <td>Centro comercial Moctezuma</td>
+      <td>México D.F.</td>
+      <td>Mexico</td>
+    </tr>
+    <tr class="item">
+      <td>Ernst Handel</td>
+      <td>Graz</td>
+      <td>Austria</td>
+    </tr>
+    <tr class="item">
+      <td>FISSA Fabrica Inter. Salchichas S.A.</td>
+      <td>Madrid</td>
+      <td>Spain</td>
+    </tr>
+    <tr class="item">
+      <td>Galería del gastrónomo</td>
+      <td>Barcelona</td>
+      <td>Spain</td>
+    </tr>
+    <tr class="item">
+      <td>Island Trading</td>
+      <td>Cowes</td>
+      <td>UK</td>
+    </tr>
+    <tr class="item">
+      <td>Königlich Essen</td>
+      <td>Brandenburg</td>
+      <td>Germany</td>
+    </tr>
+    <tr class="item">
+      <td>Laughing Bacchus Wine Cellars</td>
+      <td>Vancouver</td>
+      <td>Canada</td>
+    </tr>
+    <tr class="item">
+      <td>Magazzini Alimentari Riuniti</td>
+      <td>Bergamo</td>
+      <td>Italy</td>
+    </tr>
+    <tr class="item">
+      <td>North/South</td>
+      <td>London</td>
+      <td>UK</td>
+    </tr>
+    <tr class="item">
+      <td>Paris spécialités</td>
+      <td>Paris</td>
+      <td>France</td>
+    </tr>
+    <tr class="item">
+      <td>Rattlesnake Canyon Grocery</td>
+      <td>Albuquerque</td>
+      <td>USA</td>
+    </tr>
+    <tr class="item">
+      <td>Simons bistro</td>
+      <td>København</td>
+      <td>Denmark</td>
+    </tr>
+    <tr class="item">
+      <td>The Big Cheese</td>
+      <td>Portland</td>
+      <td>USA</td>
+    </tr>
+    <tr class="item">
+      <td>Vaffeljernet</td>
+      <td>Århus</td>
+      <td>Denmark</td>
+    </tr>
+    <tr class="item">
+      <td>Wolski Zajazd</td>
+      <td>Warszawa</td>
+      <td>Poland</td>
+    </tr>    
+  </tbody>
+</table>
+
+<script>
+    function performReset() {
+        document.getElementById("inputName").value = "";
+        document.getElementById("inputCity").value = "";
+        document.getElementById("inputCountry").value = "";
+        filterTable(event, 0);
+        }
+
+        function filterTable(event, index) {
+        var filter = event.target.value.toUpperCase();
+        var rows = document.querySelector("#myTable tbody").rows;
+        for (var i = 0; i < rows.length; i++) {
+            var firstCol = rows[i].cells[0].textContent.toUpperCase();
+            var secondCol = rows[i].cells[1].textContent.toUpperCase();
+            var thirdCol = rows[i].cells[2].textContent.toUpperCase();
+            if ((firstCol.indexOf(filter) > -1 && index == 0) || (secondCol.indexOf(filter) > -1 || index == 1) && (thirdCol.indexOf(filter) > -1 && index == 2)) {
+            rows[i].style.display = "";
+            } else {
+            rows[i].style.display = "none";
+            }      
+        }
+        }
+
+        document.querySelectorAll('input.w3-input').forEach(function(el,idx){
+        el.addEventListener('keyup', function(e){
+            filterTable(e, idx);
+        }, false);
+        });
+</script>
