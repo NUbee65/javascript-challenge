@@ -5,15 +5,12 @@
   <meta charset="utf-8">
   <title>UFO Finder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
   <link rel="stylesheet" href="static/css/style.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>  
-  <script src="static/js/app.js"></script>  
 </head>
 
-<body> 
+<body>
   <div class="wrapper">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -25,8 +22,8 @@
       </div>
     </nav>
     <div class="hero text-center">
-      <h1><font color='white'>UFO Sightings</font></h1>
-      <p><font color='white'>The Truth is Out There</font></p>
+      <h1>UFO Sightings</h1>
+      <p>The Truth is Out There</p>
     </div>
     <div class="container">
       <div class="row margin-top-50">
@@ -34,57 +31,17 @@
           <aside class="filters">
             <div class="panel panel-default">
               <div class="panel-heading">Filter Search</div>
-
-              
-
               <div class="panel-body">
                 <form>
                   <div class="form-group">
                     <ul class="list-group" id="filters">
                       <li class="filter list-group-item">
                         <label for="date">Enter a Date</label>
-                        
-                        <!-- ADDED onkeyup="myFunction()" TO THE LINE BELOW -->
-                        <input class="form-control" id="dateInput" type="text" onkeyup="dateFilter()" placeholder="2/1/2010">
-                        <!--
-                          <input class="form-control" id="datetime" type="text" onkeyup="myFunction()" placeholder="2/1/2010">
-                        -->
-
+                        <input class="form-control" id="datetime" type="text" placeholder="1/11/2011">
                       </li>
                     </ul>
                   </div>
                   <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
-                    <ul class="list-group" id="filters">
-                      <li class="filter list-group-item">
-
-                        
-                        <form action="/action_page.php">
-
-                          <label for="date_x">Date</label>
-                          <input class="form-control" type="text" id="dateInput2" name="date" onkeyup="dateFilter()" placeholder="ex. 1/1/2010">
-                      
-                          <label for="city_x">City</label>
-                          <input class="form-control" type="text" id="cityInput" name="city" onkeyup="dateFilter()" placeholder="ex. chicago">
-                      
-                          <label for="state_x">State</label>
-                          <input class="form-control" type="text" id="stateInput" name="state" onkeyup="dateFilter()" placeholder="ex. il">
-                          
-                          <label for="country_x">Country</label>
-                          <input class="form-control" type="text" id="countryInput" name="country" onkeyup="dateFilter()" placeholder="ex. us">
-
-                          <label for="shape_x">Shape</label>
-                          <input class="form-control" type="text" id="shapeInput" name="shape" onkeyup="dateFilter()" placeholder="ex. triangle">
-
-                          <label for="duration_x">Duration</label>
-                          <input class="form-control" type="text" id="durationInput" name="duration" onkeyup="dateFilter()" placeholder="ex. 5 mins.">
-
-                          <label for="comment_x">Comment</label>
-                          <input class="form-control" type="text" id="commentInput" name="duration" onkeyup="dateFilter()" placeholder="ex. red lights">
-                        
-                          <input type="submit" value="Submit">
-                        </form>
-                        
-
                 </form>
               </div>
             </div>
@@ -106,46 +63,6 @@
               </thead>
               <tbody></tbody>
             </table>
-
-            <script>
-              function dateFilter() {
-                var dateInput1_x, cityInput_x, dateFilter1, cityFilter, table, tr, td, i, txtValue;
-                dateInput1_x = document.getElementById("dateInput");
-                cityInput_x = document.getElementById("cityInput");
-                dateFilter1 = dateInput1_x.value.toUpperCase();
-                cityFilter = cityInput_x.value.toUpperCase();
-                table = document.getElementById("ufo-table");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                  td_date = tr[i].getElementsByTagName("td")[0];
-                  if (td_date) {
-                    txtValue = td_date.textContent || td_date.innerText;
-                    if (txtValue.toUpperCase().indexOf(dateFilter1) > -1) &&
-                    (txtValue.toUpperCase().indexOf(cityFilter) > -1) {
-                      tr[i].style.display = "";
-                    } else {
-                      tr[i].style.display = "none";
-                    }                    
-                  }       
-                }
-
-                d3.select('#ufo-table').node().classed('table table-striped', false);
-                //d3.select('#ufo-table').attr('class','table table-striped');
-                //document.getElementById("ufo-table").classed('table-dark');
-              }
-
-              
-              
-
-              </script>
-
-
-
-
-
-
-
-
           </div>
         </div>
       </div>
@@ -156,7 +73,7 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
   <script src="static/js/data.js"></script>
-  <script src="static/js/app.js"></script>
+  <script src="static/js/app1.js"></script>
 </body>
 
 </html>
